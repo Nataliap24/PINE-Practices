@@ -25,6 +25,23 @@ def seq_count(seq):
         gene_dict[d] += 1
     return gene_dict
 
+#For Ex6
+def seq_reverse(seq):
+    return seq[::-1]
+
+#Foe Ex7
+def seq_complement(seq):
+    new_seq = ""
+    for base in seq:
+        if base == "A":
+            new_seq += "T"
+        elif base == "T":
+            new_seq += "A"
+        elif base == "C":
+            new_seq += "G"
+        elif base == "G":
+            new_seq += "C"
+    return new_seq
 
 
 
