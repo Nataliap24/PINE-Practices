@@ -29,18 +29,14 @@ def seq_count(seq):
 def seq_reverse(seq):
     return seq[::-1]
 
-#Foe Ex7
+#For Ex7
 def seq_complement(seq):
+    dict_compl = {"A":"T", "C":"G", "G":"C", "T":"A"}
     new_seq = ""
     for base in seq:
-        if base == "A":
-            new_seq += "T"
-        elif base == "T":
-            new_seq += "A"
-        elif base == "C":
-            new_seq += "G"
-        elif base == "G":
-            new_seq += "C"
+        for key, value in dict_compl.items():
+            if base == key:
+                new_seq += value
     return new_seq
 
 
