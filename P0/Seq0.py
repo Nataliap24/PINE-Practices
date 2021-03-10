@@ -1,4 +1,5 @@
 from pathlib import Path
+import termcolor
 
 #for Ex1
 def seq_ping():
@@ -39,6 +40,41 @@ def seq_complement(seq):
                 new_seq += value
     return new_seq
 
+#For session6
+class Seq:
 
+    def __init__(self, strbases):
+        self.strbases = strbases
+        if self.is_valid_sequence():
+            print("New sequence created!")
+        else:
+            self.strbases = "ERROR"
+            print("Incorrect sequence detected")
+
+    def is_valid_sequence(self):
+        for b in self.strbases:
+            if b != "A" and b != "C" and b != "G" and b != "T":
+                return False
+            return True
+
+    @staticmethod
+    def print_seqs(list_sequences):
+        for i in range(0, len(list_sequences)):
+            text = "Sequence" + str(i) + ": (Length 3)" + str(list_sequences[i])
+            termcolor.cprint(text, 'yellow')
+
+    def __str__(self):
+        return self.strbases
+
+    def len(self):
+        return len(self.strbases)
+
+#for ex3 session 6
+
+def generate_seqs(pattern, number):
+    list_seq = []
+    for i in range(0, number):
+        list_seq.append(Seq(pattern * (i + 1)))
+    return list_seq
 
 
