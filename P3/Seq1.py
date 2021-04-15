@@ -1,9 +1,9 @@
-import termcolorex
+import termcolor
 from pathlib import Path
 
 class Seq:
 
-    NULL_SEQUENCE = "NULL" #these are constants (variables in capitals), and they are used not to change them along the programme. We use it so that if we want to change their value, we just change it once
+    NULL_SEQUENCE = "NULL"
     INVALID_SEQUENCE = "ERROR"
 
     def __init__(self, strbases=NULL_SEQUENCE):
@@ -28,7 +28,7 @@ class Seq:
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
             text = "Sequence" + str(i) + ": (Length 3)" + str(list_sequences[i])
-            termcolorex.cprint(text, 'yellow')
+            termcolor.cprint(text, 'yellow')
 
     def __str__(self):
         return self.strbases

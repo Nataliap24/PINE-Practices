@@ -33,7 +33,8 @@ try:
 
         # Send the message
         message = "Hello from the teacher's server"
-        send_bytes = str.encode(message)
+        #send_bytes = int.encode(message)
+        send_bytes = message.encode()
         # We must write bytes, not a string
         clientsocket.send(send_bytes) #we could also write clientsocket.send(message.encode()) and not write  send_bytes = str.encode(message)
         clientsocket.close()

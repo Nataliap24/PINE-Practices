@@ -1,5 +1,5 @@
 from pathlib import Path
-import termcolor
+import termcolorex
 
 #for Ex1
 def seq_ping():
@@ -61,7 +61,7 @@ class Seq:
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
             text = "Sequence" + str(i) + ": (Length 3)" + str(list_sequences[i])
-            termcolor.cprint(text, 'yellow')
+            termcolorex.cprint(text, 'yellow')
 
     def __str__(self):
         return self.strbases
