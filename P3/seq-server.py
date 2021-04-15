@@ -10,7 +10,7 @@ ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 ls.bind((IP, PORT))
 ls.listen()
-client_adress_list = []
+#client_adress_list = []
 print("The server is configured!")
 
 while True:
@@ -18,7 +18,7 @@ while True:
     print("Waiting for Clients to connect")
     try:
         (cs, client_ip_port) = ls.accept()
-        client_adress_list.append(client_ip_port)
+        #client_adress_list.append(client_ip_port)
         print("CONNECTION ESTABLISHED. Client IP, PORT: " + str(client_ip_port))
     except KeyboardInterrupt:
         print("Server stopped by the user")
@@ -52,6 +52,6 @@ while True:
         response = "Not available command"
         cs.send(response.encode())
 
-    ls.close()
+ls.close()
 
-#echo 2 | nc -w 1 127.0.0.1 8080
+#echo PING | nc -w 1 127.0.0.1 8080

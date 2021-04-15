@@ -25,10 +25,10 @@ class Client:
         colorama.init(strip="False")
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.ip, self.port))
-        print(termcolor.colored("To server:" + msg, "yellow"))
+        print(termcolor.colored(msg, "green"))
         s.send(msg.encode())
         response = s.recv(2048).decode("utf-8")
-        print(termcolor.colored("From server:" + response, "blue"))
+        print(termcolor.colored(response, "blue"))
         s.close()
         return "From server: " + response
 

@@ -21,17 +21,16 @@ def get(cs, list_sequences, argument):
     print(response)
     cs.send(response.encode())
 
-def info(cs, argument): #argument = sequence
+def info(cs, argument):
     print_colored("INFO", "yellow")
     seq = Seq(argument)
     length = "Total length: " + str(seq.len())
-    count = seq.count_bases() #tuple with number of bases
-    suma = count[0] + count[1] + count[2] + count[3]
+    bases_count = seq.count_bases()[0]
+    percentages = seq.count_bases()[1]
     response = length + "\n"
-    for i in range(0, len(count)):
+    for i in range(0, len(bases_count)):
         list_bases = ["A: ", "C: ", "G: ", "T: "]
-        percentage = str(round((count[i] / suma) * 100, 2)) + "%"
-        response += list_bases[i] + str(count[i]) + " -->  " + percentage + "\n"
+        response += list_bases[i] + str(bases_count[i]) + " -->  " + str(percentages[i]) + "%" + "\n"
     cs.send(response.encode())
     print(response)
 
@@ -49,7 +48,7 @@ def rev(cs, argument):
     cs.send(reverse.encode())
     print(reverse)
 
-def gene(cs, argument): #argument = gene name
+def gene(cs, argument):
     try:
         print_colored("GENE", "yellow")
         seq = Seq()

@@ -53,7 +53,12 @@ class Seq:
                     g += 1
                 else:
                     t += 1
-            return a, c, g, t
+            suma = a + c + g + t
+            count_list = [a, c, g, t]
+            per_list = []
+            for base in count_list:
+                per_list.append(round((base / suma) * 100, 2))
+            return count_list, per_list
 
     def count(self):
         a, c, g, t = self.count_bases()

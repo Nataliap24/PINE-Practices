@@ -28,12 +28,8 @@ while True:
         msg_raw = cs.recv(2048)
         msg = msg_raw.decode()
         print(f"Received Message: {msg}")
-        try:
-            response = "ECHO" + msg
-            cs.send(response.encode())
-        except ValueError:
-            cs.send("You need a number".encode())
-
+        response = "ECHO" + msg
+        cs.send(response.encode())
         cs.close()
         if count_connections == 5:
             for i in range(0, len(client_adress_list)):
