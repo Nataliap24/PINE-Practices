@@ -1,7 +1,12 @@
+#URL links have parameters ex: http://127.0.0.1:8080/hi/there?name=virus&type=corona -> the part after the question mark is the parameter
+#they are variable names with their values
+#when we try to call our server (basis of ex6 server) with that we get an error bc it does not know it is a parameter
+#we will modify this server so it can read it
+
 import socket
 import termcolor
 import pathlib
-
+from urllib.parse import urlparse, parse_qs
 
 # -- Server network parameters
 IP = "127.0.0.1"
@@ -12,63 +17,67 @@ def read_html_file(filename):
     return content
 
 def process_client(s):
-    # -- Receive the request message
     req_raw = s.recv(2000)
     req = req_raw.decode()
     print("Message FROM CLIENT: ")
-    # -- Split the request messages into lines
     lines = req.split('\n')
-    # -- The request line is the first
     req_line = lines[0]
-    path_name = req_line.split(" ")[1] #This way we get a list with the name, path and mode?
-
-
-    #print("Request line: ", end="")
-    termcolor.cprint(req_line, "green")
-
-    # -- Generate the response message
-    # It has the following lines
-    # Status line
-    # header
-    # blank line
-    # Body (content to send)
-
-    # This new contents are written in HTML language (because we write html instead of plain text)
-    body = """
+    request = req_line.split(" ")[1]#after splitting we will have in one part the pathname and in the other one everything that comes after the question mark
+    print("Request:", request) #in the request we will get an error bc /favicon.ico is inclueded and it can´t be read? so we need to put a try
+    path_name = request.split("?")[0]
+    print("Resource requested:", path_name)
+    try:
+        parameters = request.split("?")[1]
+        print("Arguments:", parameters)
+        # in parameters we will get name=virus&type=corona and we need to get the variables and values from there
+        # we are going to use the urlpase library to solve it
+        # these functions divide the string in two parts.
+        o = urlparse(req_line.split(" ")[1])
+        query = parse_qs(o.query)
+        print(o)
+        print(query)
+    except IndexError:
+        pass
     """
-    # -- Status line: We respond that everything is ok (200 code)
-    status_line = "HTTP/1.1 200 OK\n"
+    having the urlpase library we could have just written
+    lines = req.split('\n')
+    req_line = lines[0]
+    request = req_line.split(" ")[1]
+    o = urlparse(request)
+    path_name = o.path
+    arguments = parse_qs(o.query)
+    ---> if we write in our url .../A?name=Adenosine , we get in the parameters {'name':[Adenosine]{
+    """
 
-    # -- Add the Content-Type header
+
+
+    status_line = "HTTP/1.1 200 OK\n"
     header = "Content-Type: text/html\n"
 
-    if path_name == "/info/A":
-        body = read_html_file("./html/A.html")
+    if path_name == "/":
+        body = read_html_file("./html/index.html")
+    elif "/info/" in path_name:
+        try:
+            body = read_html_file("./html/" + path_name.split('/')[-1] + ".html")
+        except FileNotFoundError:
+            body = read_html_file("./html/error.html")
+    else:
+        body = read_html_file("./html/error.html")
 
-    # -- Add the Content-Length
     header += f"Content-Length: {len(body)}\n"
-
-    # -- Build the message by joining together all the parts
     response_msg = status_line + header + "\n" + body
     cs.send(response_msg.encode())
+    # in html files <br> is the end of line character (para la siguiente linea),
+    # so if we wanted the "main page" ,message to be printed in the next line we would have to add it next to the previous line
+    #instead of <br> we can write <p></p> under the previous line
 
-# -------------- MAIN PROGRAM
+
 # ------ Configure the server
-# -- Listening socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# -- Optional: This is for avoiding the problem of Port already in use
 ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
-# -- Setup up the socket's IP and PORT
 ls.bind((IP, PORT))
-
-# -- Become a listening socket
 ls.listen()
-
 print("SEQ Server configured!")
-
-# --- MAIN LOOP
 while True:
     print("Waiting for clients....")
     try:
@@ -78,9 +87,5 @@ while True:
         ls.close()
         exit()
     else:
-
-        # Service the client
         process_client(cs)
-
-        # -- Close the socket
         cs.close()

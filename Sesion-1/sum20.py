@@ -4,3 +4,4 @@ for i in range(1,21):
     res += i
 
 print("TOTAL SUM :", res)
+
