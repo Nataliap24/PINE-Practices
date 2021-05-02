@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FORM 1</title>
+  </head>
+  <body>
+    <form action="echo" method="get">
+      Message to send to the server: <br>
+      <input type="text" name="msg">
+      <input type="submit" value="SEND">
+    </form>
+  </body>
+</html>
+
+<! the form function is the mechanism we have to create the form inside of it we can create the inputs.
+First we make the "message to send.." message appear on the screen
+the first input has two attributes:
+       type that tells what is the actual thing that is going to be displayed (when putting text, we ask the browser to put a thing to write in it)
+       the name attribute is for the browser to know how to send that information to the server. In the url msg="the thing we wrote" appears bc we wrote the echo action**
+For the second input:
+        the submit type creates the send button
+        the value=send writes "send" inside the button
+
+** by saying action="echo", we imply that something will attend the echo request for the server
+Example: echo?msg=abcdefg for the key msg, the value is abcdefg
+
+the method="get" function ???
+
+
+>
