@@ -2,7 +2,6 @@ import http.server
 import pathlib
 import socketserver
 from urllib.parse import urlparse, parse_qs
-import json
 import server_functions as su
 
 PORT = 8080
@@ -41,7 +40,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         print("Parameters:", arguments)
 
         if "json" in arguments.keys():
-
+            content_type = 'application/json'
             if path_name == "/species":
                 try:
                     if "limit" in arguments.keys():
@@ -84,10 +83,15 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     contents = su.read_template_html_file("./html/error.html").render()
 
         else:
+            content_type = 'text/html'
             if path_name == "/":
                 contents = su.read_template_html_file("./html/mainpage.html").render()
             elif path_name == "/species":
                 try:
+                    if "chk" in arguments.keys():
+                        print("The checkbox was checked")
+                    else:
+                        print('The checkbox was not checked')
                     if "limit" in arguments.keys():
                         limit = arguments['limit'][0]
                     else:
@@ -132,7 +136,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         # Generating the response message
         self.send_response(200)
-        self.send_header('Content-Type', 'text/html')
+        self.send_header('Content-Type', content_type)
         self.send_header('Content-Length', len(contents.encode()))
         # The header is finished
         self.end_headers()

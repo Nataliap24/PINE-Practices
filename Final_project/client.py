@@ -1,7 +1,6 @@
 import http.client
 import json
-import Seq1
-import socket
+
 
 
 IP = 'localhost'

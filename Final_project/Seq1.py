@@ -1,4 +1,4 @@
-import termcolorex
+import termcolor
 from pathlib import Path
 
 class Seq:
