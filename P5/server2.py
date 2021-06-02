@@ -1,3 +1,4 @@
+#IT IS THE SAME AS SERVER.PY BUT WITHOUT COLOURS
 import http.server
 import socketserver
 import termcolor
@@ -23,13 +24,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         if self.path == "/":
             contents = read_html_file("./html/index.html")
         elif self.path == "/info/A":
-            contents = read_html_file("./html/A.html")
+            contents = read_html_file("./html/info/A.html")
         elif self.path == "/info/C":
-            contents = read_html_file("./html/C.html")
+            contents = read_html_file("./html/info/C.html")
         elif self.path == "/info/G":
-            contents = read_html_file("./html/G.html")
+            contents = read_html_file("./html/info/G.html")
         elif self.path == "/info/T":
-            contents = read_html_file("./html/T.html")
+            contents = read_html_file("./html/info/T.html")
         elif self.path.endswith(".html"):
             try:
                 contents = read_html_file("./html" + self.path)

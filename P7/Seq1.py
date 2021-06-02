@@ -103,10 +103,13 @@ class Seq:
     def read_fasta(self, filename):
         self.strbases = Seq.take_out_first_line(Path(filename).read_text())
 
-
+    def most_freq_base(self):
+        dict_bases = self.count()
+        return max(dict_bases, key=dict_bases.get)
 
 def test_sequences():
     s1 = Seq()
     s2 = Seq("ACTGA")
     s3 = Seq("Invalid Sequence")
     return s1, s2, s3
+

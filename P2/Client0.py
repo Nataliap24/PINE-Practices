@@ -1,4 +1,4 @@
-import termcolorex
+import termcolor
 import socket
 
 class Client:
@@ -35,6 +35,6 @@ class Client:
         # Return the response
         return "From server: " + response
     def debug_talk(self, msg, resp):
-        termcolorex.cprint("To server: " + msg, 'blue')
-        termcolorex.cprint(resp, 'green')
+        termcolor.cprint("To server: " + msg, 'blue')
+        termcolor.cprint(resp, 'green')
 

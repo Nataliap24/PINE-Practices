@@ -1,0 +1,266 @@
+---------------listSpecies endpoint---------------
+TEST 1:
+* Input:
+
+http://localhost:8080/species?limit=10
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>List Species</title>
+      </head>
+      <body style="background-color: powderblue;">
+        <P>The total number of species in the ensembl is: 310</P>
+        <P>The limit you have selected is: 10</P>
+        The name of the species are:
+
+        <P>-->little spotted kiwi</P>
+
+        <P>-->Indian glassy fish</P>
+
+        <P>-->blue tit</P>
+
+        <P>-->narwhal</P>
+
+        <P>-->American beaver</P>
+
+        <P>-->lumpfish</P>
+
+        <P>-->Chinese hamster</P>
+
+        <P>-->channel bull blenny</P>
+
+        <P>-->Golden Hamster</P>
+
+        <P>-->wild yak</P>
+
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+ TEST 2:
+* Input:
+
+http://localhost:8080/species?limit=abcd
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Error</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <P>Resource not available</P>
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+---------------Karyotype endpoint---------------
+TEST 1:
+* Input:
+
+http://localhost:8080/karyotype?specie=human
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>karyotype</title>
+      </head>
+      <body style="background-color: powderblue;">
+      <P>The names of the chromosomes are:</P><br>
+
+            <P>Y</P>
+
+            <P>20</P>
+
+            <P>X</P>
+
+            <P>13</P>
+
+            <P>22</P>
+
+            <P>10</P>
+
+            <P>6</P>
+
+            <P>19</P>
+
+            <P>14</P>
+
+            <P>18</P>
+
+            <P>2</P>
+
+            <P>4</P>
+
+            <P>21</P>
+
+            <P>9</P>
+
+            <P>11</P>
+
+            <P>17</P>
+
+            <P>8</P>
+
+            <P>7</P>
+
+            <P>15</P>
+
+            <P>12</P>
+
+            <P>1</P>
+
+            <P>16</P>
+
+            <P>5</P>
+
+            <P>3</P>
+
+            <P>MT</P>
+
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+TEST 2:
+* Input:
+
+http://localhost:8080/karyotype?specie=cat
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>karyotype</title>
+      </head>
+      <body style="background-color: powderblue;">
+      <P>The names of the chromosomes are:</P><br>
+
+            <P>A2</P>
+
+            <P>C2</P>
+
+            <P>D2</P>
+
+            <P>D4</P>
+
+            <P>E1</P>
+
+            <P>C1</P>
+
+            <P>B2</P>
+
+            <P>D3</P>
+
+            <P>D1</P>
+
+            <P>E3</P>
+
+            <P>X</P>
+
+            <P>B4</P>
+
+            <P>E2</P>
+
+            <P>B3</P>
+
+            <P>F2</P>
+
+            <P>A3</P>
+
+            <P>A1</P>
+
+            <P>F1</P>
+
+            <P>B1</P>
+
+            <P>MT</P>
+
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+TEST 3:
+* Input:
+
+http://localhost:8080/karyotype?specie=abcd
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Error</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <P>Resource not available</P>
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+---------------Chromosome length endpoint---------------
+TEST 1:
+* Input:
+
+http://localhost:8080/chromosomeLenght?specie=human&chrom=21
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>karyotype</title>
+      </head>
+      <body style="background-color: powderblue;">
+      <P>The length of the chromosome is: <b>46709983</b></P><br>
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+TEST 2:
+* Input:
+
+http://localhost:8080/chromosomeLenght?specie=abc&chrom=21
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Error</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <P>Resource not available</P>
+        <a href="/">Main page</a>
+      </body>
+    </html>
+
+TEST 3:
+* Input:
+
+http://localhost:8080/chromosomeLenght?specie=human&chrom=A2
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Error</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <P>Resource not available</P>
+        <a href="/">Main page</a>
+      </body>
+    </html>

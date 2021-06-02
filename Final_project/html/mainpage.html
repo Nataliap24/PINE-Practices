@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>BROWSING HUMAN AND VERTEBRATES GENOMES</title>
+  </head>
+  <body>
+    <h1><u>BROWSING HUMAN AND VERTEBRATES GENOMES</u></h1>
+    <hr>
+    <p><b>BASIC LEVEL SERVICES</b></p>
+    <form action="species" method="get">
+      1) List of species in the genome database: <br>
+      Enter a limit <input type="text" name="limit"><br>
+      <input type="submit" value="species">
+    </form>
+    <p></p>
+    <form action="karyotype" method="get">
+      2) Information about the karyotype: <br>
+      Enter the name of the specie <input type="text" name="specie"><br>
+      <input type="submit" value="karyotype">
+    </form>
+    <p></p>
+    <form action="chromosomeLenght" method="get">
+        3) Chromosome lenght: <br>
+        Enter the name of the species <input type="text" name="specie"><br>
+        Enter the name of the chromosome <input type="text" name="chrom"><br>
+        <input type="submit" value="length">
+      </form>
+    <p></p>
+  <hr>
+    <p><b>MEDIUM LEVEL SERVICES</b></p>
+    <form action="seq" method="get">
+      1) Sequence of a given gene: <br>
+      Enter the name of the gene you want to get <input type="text" name="gene"><br>
+      <input type="submit" value="sequence">
+    </form>
+    <p></p>
+    <form action="info" method="get">
+      2) Information about a given gene: <br>
+      Enter the name of the gene <input type="text" name="gene"><br>
+      <input type="submit" value="Info">
+    </form>
+    <p></p>
+    <form action="calc" method="get">
+      3) Calculations of a gene: <br>
+      Enter the name of the gene <input type="text" name="gene"><br>
+      <input type="submit" value="Calculations">
+    </form>
+  </body>
+</html>
+

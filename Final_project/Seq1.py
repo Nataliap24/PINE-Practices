@@ -1,4 +1,4 @@
-import termcolor
+import termcolorex
 from pathlib import Path
 
 class Seq:
@@ -28,7 +28,7 @@ class Seq:
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
             text = "Sequence" + str(i) + ": (Length 3)" + str(list_sequences[i])
-            termcolor.cprint(text, 'yellow')
+            termcolorex.cprint(text, 'yellow')
 
     def __str__(self):
         return self.strbases
@@ -57,7 +57,7 @@ class Seq:
 
     def count(self):
         a, c, g, t = self.count_bases()
-        dict_bases = {"A": a, "C": c, "G": g, "T": t}
+        dict_bases = {"A":a, "C":c, "G":g, "T":t}
         return dict_bases
 
     def percentage(self):

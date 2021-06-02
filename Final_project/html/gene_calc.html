@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Gene Sequence</title>
+      </head>
+      <body style="background-color: palegreen;">
+      You requested the calculations of the gene: <b>{{context.gene_name}}</b>
+      <p></p>
+      The length of the sequence is: {{context.length}}<br>
+      The percentages of its bases are: <br>
+      {% for per in context.percentages %}
+         <P>{{per}}</P>
+      {% endfor %}
+
+        <a href="/">Main page</a>
+      </body>
+    </html>

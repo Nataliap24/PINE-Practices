@@ -10,17 +10,17 @@ def print_colored(message, color):
     colorama.init(strip="False")
     print(termcolor.colored(message, color))
 
-def format_command(command): #this is bc if we try to send "PING", we get PING\r\n
-    return command.replace("\n", "").replace("\r", "")
+"""def format_command(command): #this is bc if we try to send "PING", we get PING\r\n
+    return command.replace("\n", "").replace("\r", "")"""
 
 def read_template_html_file(filename):
     content = jinja2.Template(pathlib.Path(filename).read_text())
     return content
 
-def ping(cs):
+'''def ping(cs):
     print_colored("PING command", "green")
     response = "OK"
-    cs.send(response.encode())
+    cs.send(response.encode())'''
 
 def get(list_sequences, seq_number):
     sequence = list_sequences[int(seq_number)]
@@ -33,12 +33,10 @@ def info(argument):
     print_colored("INFO", "yellow")
     seq = Seq(argument)
     length = "Total length: " + str(seq.len())
-    bases_count = seq.count_bases()[0]
-    percentages = seq.count_bases()[1]
+    percentages = seq.percentage()
     response = [length]
-    for i in range(0, len(bases_count)):
-        list_bases = ["A: ", "C: ", "G: ", "T: "]
-        response.append(list_bases[i] + str(bases_count[i]) + " -->  " + str(percentages[i]) + "%")
+    for e in percentages:
+        response.append(e)
     context = {'sequence': argument, 'info_sequence': response}
     contents = read_template_html_file("./html/info.html").render(context=context)
     return contents
@@ -67,6 +65,7 @@ def gene(seq_name):
     context = {"gene_name": seq_name, "gene_contents": s1.strbases}
     contents = read_template_html_file("./html/gene.html").render(context=context)
     return contents
+
 
 
 

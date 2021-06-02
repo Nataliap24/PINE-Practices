@@ -24,15 +24,11 @@ def get(cs, list_sequences, argument):
 def info(cs, argument):
     print_colored("INFO", "yellow")
     seq = Seq(argument)
-    length = "Total length: " + str(seq.len())
-    bases_count = seq.count_bases()[0]
-    percentages = seq.count_bases()[1]
-    response = length + "\n"
-    for i in range(0, len(bases_count)):
-        list_bases = ["A: ", "C: ", "G: ", "T: "]
-        response += list_bases[i] + str(bases_count[i]) + " -->  " + str(percentages[i]) + "%" + "\n"
+    list_info = Seq.percentage(seq)
+    response = ""
+    for e in list_info:
+        response += e + "\n"
     cs.send(response.encode())
-    print(response)
 
 def comp(cs, argument):
     print_colored("COMP", "yellow")

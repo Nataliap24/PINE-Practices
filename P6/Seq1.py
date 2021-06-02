@@ -53,17 +53,22 @@ class Seq:
                     g += 1
                 else:
                     t += 1
-            suma = a + c + g + t
-            count_list = [a, c, g, t]
-            per_list = []
-            for base in count_list:
-                per_list.append(round((base / suma) * 100, 2))
-            return count_list, per_list
+            return a, c, g, t
 
     def count(self):
         a, c, g, t = self.count_bases()
-        dict_bases = {"A":a, "C":c, "G":g, "T":t}
+        dict_bases = {"A": a, "C": c, "G": g, "T": t}
         return dict_bases
+
+    def percentage(self):
+        count = self.count_bases()
+        sum = count[0] + count[1] + count[2] + count[3]
+        list_bases = ['a', 'c', 'g', 't']
+        list_per = []
+        for i in range(0, len(count)):
+            per = str(round((count[i] * 100) / sum, 2))
+            list_per.append(list_bases[i] + ': ' + str(count[i]) + '  --> ' + per + '%')
+        return list_per
 
     def reverse(self):
         if self.strbases == Seq.NULL_SEQUENCE:
